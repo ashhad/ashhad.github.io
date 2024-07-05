@@ -1,5 +1,5 @@
 ---
-title: "Muhabbat phir kab hogi"
+title: "Muhabbat ab phir kab hogi"
 date: 2024-07-01
 categories: khutoot
 ---
