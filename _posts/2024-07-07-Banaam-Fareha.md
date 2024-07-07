@@ -1,3 +1,9 @@
+---
+title: "Ba'naam Fareha"
+date: 2023-11-25
+categories: Khutoot
+---
+
 Fareha. Tum poochho usse pehle bata doon ki Fareha naam maine Jaun se liya hai. Fareha Jaun ki pehli adhhoru muhabbat ka naam tha. Jaun ne Fareha ke liya bohat kuch likha hai, kisi kisi mushaire mein Jaun ne Fareha ko bohat yaad bhi kiya hai. Mujh mein aur Jaun mein jo ek farq hai is maamle mein wo ye bhi hai ki main abhi bhi sar-e-aam tumhara naam lene mein hichakta hoon. SHayad Jaun bhi hichakte ho, isiliye shayad un mehfilo'n mein wo alag surror mein rehte the.  
 
 Fareha, main aksar tumahre baarre mein sochta hoon. Ab utna nahi soochta jitna pehle sochta tha par abhi bhi kayi dafa kisi gaane se, kisi jagah se, kisi aawaz se, tum yaad aa he jaati ho. Jaise Jaun ne kaha tha kabhi ki "kya sitam hai ki teri soorat, ab yaad karne par yaad aati hai", waise he ab kuch waqr lagta hai tasavvur mein tumhara khaaka kheechne mein. Tumhara muskurahat ki parchhahiyan bachi hain bas zehen, tumhari aawaz ki kirchanein hai jinhe jod jod kar tumhari hasi ki khanak yaad karte hain. Tumhari khushboo, wo ek alag mehroomi hai jo badi khalti hai. Mujhe nahi pata ki tumhari mehek kaisi hai to main kabhi baarish ki geeli mittei mein, kabhi cafe mein rakhi garam coffee mein, kabhi narm taazi ghaas mein aur kabhi puraani kitab ki khushboo mein tumhe dhoondhta rehta hoon. Zindagi mein insan ko kisi sawal ka jawab nahi milta to kaha jaata hai ki aakhirat mein mil jaayega, haalanki mujhe lagta hai ki baad qayamat bhi main isi kashmakashmein jhulasta rahoonga.  
