@@ -19,7 +19,7 @@ title: Tukbandi # the main title
 tagline: Fizool baat'on ko jodne ki bekar si koshish # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  urdu, ghazal, nazm, nazam, sher, shayari, khat 
+  urdu, ghazal, nazm, nazam, sher, shayari, khat, love, urdu poetry, poetry, indian, literature, couplet, love letters
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -216,6 +216,9 @@ exclude:
   - LICENSE
   - "*.config.js"
   - package*.json
+
+plugins:
+  - jekyll-seo-tag
 
 jekyll-archives:
   enabled: [categories, tags]
