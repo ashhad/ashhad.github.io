@@ -44,7 +44,7 @@ Us raat humne bohat der tak socha ki aakhir aisa kyun hota hoga? Aisi kya majboo
 Beherhal, zehen mein jawab bohat se aaye, maslan ho sakta hai ki us shakhs ko apni pabandiya'n pata ho, use pata ho ki jo wo chaah raha hai use paa lene se uske aas paas cheezein kharab ho sakti hain, aur isliye mu'aashara ki wajah se wo yun hi sab kuch qurbaan kar de. Halanki ye bohat he buzdil si wajah hai par bohat aam bhi hai. Aur is haala tmein bhi log izhar to kar he dete hain. 
 
 EK doosri, aur humari samajh mein bohat ahem wajah "ehsas-e-kamtari" lagi hume. Mu'aashare se haarna baad ki baat hai, agar shakhs khud se haar jaaye to koi bacha nahi sakta. Isi baat se zehen mein ek ek kar ke kuch log aur unki bohat saari rivaayaten yaad aati gayin. Aise mein ek sawal bohat uchhalta hai "main us ke qabil nahin hoon"
-Is ek jumle ko na jaane kitne log apni bechargi ki laathi bana kar zindagi kaat dete hain. Main aksar unse poochhna chaahta hoon ki wo is nateeje par aaye kaisa aur yaqeen maano Fareha mujhe aaj tak koi mutmaayen jawaab nahi de paaya hai. Zyadatar log apne khaas shakhs ki kisi ek bahari ada ya khasiyat ki daleel de kar reh jaate hain
+Is ek jumle ko na jaane kitne log apni bechargi ki laathi bana kar zindagi kaat dete hain. Main aksar unse poochhna chaahta hoon ki wo is nateeje par aaye kaisa aur yaqeen maano Fareha mujhe aaj tak koi mutmaayen jawaab nahi de paaya hai. Zyadatar log apne khaas shakhs ki kisi ek bahari ada ya khasiyat ki daleel de kar reh jaate hain:
 
 *wo bohat khoobsurat hai*
 *uski height bohat achhi hai*
