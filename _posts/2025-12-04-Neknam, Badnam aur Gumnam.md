@@ -47,9 +47,9 @@ EK doosri, aur humari samajh mein bohat ahem wajah "ehsas-e-kamtari" lagi hume. 
 Is ek jumle ko na jaane kitne log apni bechargi ki laathi bana kar zindagi kaat dete hain. Main aksar unse poochhna chaahta hoon ki wo is nateeje par aaye kaisa aur yaqeen maano Fareha mujhe aaj tak koi mutmaayen jawaab nahi de paaya hai. Zyadatar log apne khaas shakhs ki kisi ek bahari ada ya khasiyat ki daleel de kar reh jaate hain
 
 *wo bohat khoobsurat hai*
-*uski height bohat achhi hai"
-*uski aawaz lajawab hai"
-*uska rang bohat saaf hai"
+*uski height bohat achhi hai*
+*uski aawaz lajawab hai*
+*uska rang bohat saaf hai*
 
 In saab bewakoofi bhari baateon par jab main poochhta hoon ki in sab khoobiyon mein us shakhs ka kya haath hai to koi jawab nahi milta. Agar khuda ne kisi ko kisi khaas tarah se banaya hai to us mein us shakhs ki kya qaabliyat hai. Ye to banane waale ka hunar hai. Aur is tarah ki jaahilpane ki baaton se wo log ye ishaara karte hain ki wo jo in khoobiyon mein shayad peechee ho unhe upar waalo ne kharab banaya hai. Seedhe khaaliq par he na ahli ka daawa kar diya. Hume aise logon par aur bhi afsos hota hai ki ye apni poori zindagi jis ghutan mein guzaar dete hain uski wajah unki khokhli soch hoti hai. WO ek shakhs jo unhe nahi mila hot ahai, wo naa jaane hue bhi unke liye paimaana ban jaata hai duniya ke har kisi shakhs kop naapne ka. Zindagi mein agar koi aur muhabbat aati bhi hai to wo usi paimaane ko le kar khade ho jaate hain aur aakhir mein ek aisi cheez ko kho dete hain jo unke khayalo ki muhabbat se zyada achhi aur sachchi bhi hoti hai. Hume aise logon ke liye bohat afsos hota hai.
 
