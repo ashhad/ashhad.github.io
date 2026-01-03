@@ -2,6 +2,7 @@
 title: "Azaad Insan"
 date: 2025-07-05
 categories: Kalaam
+tags: Urdu
 ---
 
 Agar socha jaaye to 
