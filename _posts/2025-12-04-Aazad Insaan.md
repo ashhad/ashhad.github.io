@@ -1,5 +1,5 @@
 ---
-title: "Azaad Insan "
+title: "Azaad Insan"
 date: 2025-07-2025
 categories: Kalaam
 ---
