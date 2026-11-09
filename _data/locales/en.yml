@@ -1,0 +1,9 @@
+# Overrides for the theme's English locale (merged over the theme's own en.yml)
+
+copyright:
+  # Remove the "This post is licensed under CC BY 4.0" line under each post
+  license:
+    template: false
+
+  # Displayed in the footer
+  brief: All rights reserved.
