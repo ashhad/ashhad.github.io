@@ -1,0 +1,117 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* Tukbandi colour palette: black sidebar, paper-coloured pages, brass accents */
+
+@mixin tukbandi-light {
+  /* Pages */
+  --main-bg: #f7f1e3;
+  --main-border-color: #e6dcc6;
+  --text-color: #2b2620;
+  --text-muted-color: #7a6d5c;
+  --heading-color: #231e19;
+  --label-color: #5a4e40;
+  --link-color: #7a5f33;
+  --link-underline-color: #e2d6bf;
+  --blockquote-border-color: #b08d57;
+  --blockquote-text-color: #6b5e4e;
+  --card-bg: #fbf7ec;
+  --card-hover-bg: #efe6d2;
+  --menu-bg: #fbf7ec;
+  --menu-border-color: #e6dcc6;
+  --button-bg: #fbf7ec;
+  --btn-border-color: #e6dcc6;
+  --topbar-bg: rgb(247 241 227 / 85%);
+  --topbar-text-color: #4a4036;
+  --search-border-color: #e6dcc6;
+  --post-list-text-color: #5a4e40;
+  --toc-highlight: #7a5f33;
+  --btn-share-hover-color: #7a5f33;
+  --tag-border: #dccfb4;
+  --tag-hover: #efe6d2;
+
+  /* Sidebar */
+  --sidebar-bg: #141210;
+  --sidebar-border-color: #141210;
+  --site-title-color: #f2e8d8;
+  --site-subtitle-color: #9c958b;
+  --sidebar-muted-color: #d6d0c6;
+  --sidebar-active-color: #d1b07a;
+  --sidebar-hover-bg: rgb(255 255 255 / 8%);
+  --sidebar-btn-bg: #221f1b;
+  --sidebar-btn-color: #b08d57;
+  --avatar-border-color: #3a3631;
+}
+
+@mixin tukbandi-dark {
+  /* Pages */
+  --main-bg: #1e1a16;
+  --main-border-color: #2e2822;
+  --text-color: #e4dacb;
+  --text-muted-color: #a4977f;
+  --heading-color: #f2e8d8;
+  --label-color: #c9bca6;
+  --link-color: #c9a46b;
+  --link-underline-color: #4a3f2c;
+  --blockquote-border-color: #c9a46b;
+  --blockquote-text-color: #b0a28b;
+  --card-bg: #26211c;
+  --card-hover-bg: #2e2822;
+  --menu-bg: #26211c;
+  --menu-border-color: #3a322a;
+  --topbar-bg: rgb(30 26 22 / 85%);
+  --topbar-text-color: #d4c8b4;
+  --search-border-color: #3a322a;
+  --post-list-text-color: #b0a28b;
+  --toc-highlight: #c9a46b;
+  --btn-share-hover-color: #c9a46b;
+  --tag-border: #3a322a;
+  --tag-hover: #2e2822;
+
+  /* Sidebar */
+  --sidebar-bg: #0c0b0a;
+  --sidebar-border-color: #0c0b0a;
+  --site-title-color: #f2e8d8;
+  --site-subtitle-color: #8a847b;
+  --sidebar-muted-color: #c9c3b9;
+  --sidebar-active-color: #d1b07a;
+  --sidebar-hover-bg: rgb(255 255 255 / 6%);
+  --sidebar-btn-bg: #1e1a16;
+  --sidebar-btn-color: #b08d57;
+  --avatar-border-color: #2e2a25;
+}
+
+/* Light/dark chosen with the toggle */
+:root[data-bs-theme='light'] {
+  @include tukbandi-light;
+}
+
+:root[data-bs-theme='dark'] {
+  @include tukbandi-dark;
+}
+
+/* No choice made yet: follow the device's setting */
+@media (prefers-color-scheme: light) {
+  :root:not([data-bs-theme]) {
+    @include tukbandi-light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme]) {
+    @include tukbandi-dark;
+  }
+}
