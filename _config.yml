@@ -131,7 +131,7 @@ assets:
 pwa:
   enabled: true # the option for PWA feature (installable)
   cache:
-    enabled: true # the option for PWA offline cache
+    enabled: # the option for PWA offline cache; left empty (off) to avoid stale pages/styles after a deploy
     # Paths defined here will be excluded from the PWA cache.
     # Usually its value is the `baseurl` of another website that
     # shares the same domain name as the current website.
