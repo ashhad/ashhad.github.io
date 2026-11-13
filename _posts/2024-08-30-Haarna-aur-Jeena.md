@@ -2,7 +2,7 @@
 title: "Haarna aur Jeena"
 date: 2024-08-26
 categories: Kalaam
-tags: English
+tags: Urdu
 ---
 
 Ye hatasha ye udaasi koi nayi baat to nahi  
