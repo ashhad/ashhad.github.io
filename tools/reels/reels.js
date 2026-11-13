@@ -58,21 +58,26 @@ function saveBank(bank) {
 
 // ---------- picking what to post next ----------
 
-// Lowest score wins. Prefers A-tier pieces, spreads posts across all writings, avoids repeating
-// one within ~10 days, avoids three reels in a row with the same look, and spaces out
-// English/Punjabi pieces so the feed stays mostly Urdu.
-function pickNext(bank, count) {
+// Lowest score wins. Prefers S, then A, then B pieces; gives writing added in the last 30 days a
+// boost; spreads posts across all writings, avoids repeating one within ~10 days, avoids three
+// reels in a row with the same look, and spaces out English/Punjabi pieces so the feed stays
+// mostly Urdu.
+const TIER = { S: -6, A: 0, B: 10 };
+function pickNext(bank, count, start) {
   const theme = p => p.theme || 'paper';
   const lang = p => bank.works[p.work].lang;
   const pool = bank.pieces.map((p, i) => ({ p, i })).filter(({ p }) => !p.scheduled);
   const history = bank.pieces.filter(p => p.scheduled).sort((a, b) => a.scheduled.localeCompare(b.scheduled));
   const picks = [];
   while (picks.length < count && pool.length) {
+    const day = addDays(start, picks.length);
+    const fresh = p => { const a = bank.works[p.work].added; return a && a <= day && day <= addDays(a, 30); };
     const seq = [...history, ...picks];
     const last = n => seq.slice(-n);
     const uses = work => seq.filter(p => p.work === work).length;
     const score = ({ p, i }) =>
-      (p.tier === 'A' ? 0 : 10) +
+      (TIER[p.tier] ?? 10) +
+      (fresh(p) ? -4 : 0) +
       uses(p.work) * 4 +
       (last(10).some(q => q.work === p.work) ? 100 : 0) +
       (last(2).length === 2 && last(2).every(q => theme(q) === theme(p)) ? 25 : 0) +
@@ -227,7 +232,7 @@ async function main() {
   if (cmd === 'next') {
     const count = Number(arg('count', 7));
     const start = arg('start', addDays(new Date().toISOString().slice(0, 10), 1));
-    const picks = pickNext(bank, count);
+    const picks = pickNext(bank, count, start);
     const left = bank.pieces.filter(p => !p.scheduled).length - picks.length;
     picks.forEach((p, i) => console.log(`${addDays(start, i)}  ${p.tier}  ${(p.theme || 'paper').padEnd(5)}  ${p.id}`));
     console.log(`${left} pieces left in the bank after these.`);

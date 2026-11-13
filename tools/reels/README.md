@@ -6,7 +6,7 @@ Turns the writing on tukbandi.com into ready-to-post Instagram reels (1080×1920
 
 | File | What it is |
 |---|---|
-| `content-bank.json` | Every piece of writing (`works`, with its category) and every excerpt that can become a reel (`pieces`): the lines, a hook (the small heading at the top), a mood (picks the caption prompt and hashtags), a priority (`A` = most shareable) and, once used, the date it was scheduled for. |
+| `content-bank.json` | Every piece of writing (`works`, with its category) and every excerpt that can become a reel (`pieces`): the lines, a hook (the small heading at the top), a mood (picks the caption prompt and hashtags), a priority (`S` = the very best, `A` = strong, `B` = the rest) and, once used, the date it was scheduled for. |
 | `reels.js` | Picks what to post next, renders the videos and writes the captions. |
 | `fonts/` | Cormorant Garamond and Source Sans Pro (both SIL Open Font License). |
 | `out/` | Rendered videos and caption files. Not committed. |
@@ -26,12 +26,13 @@ Letters and sketches are labelled as such on the reel and in the caption, and ge
 
 ## Adding new writing
 
-1. Add it to `"works"` with its category (`Kalaam`, `Khutoot` or `Khaake`, as on the site), language (`urdu`, `english`, `punjabi`) and form (`ghazal`, `nazm`, `poem`, `khat`, `khaaka`).
+1. Add it to `"works"` with its category (`Kalaam`, `Khutoot` or `Khaake`, as on the site), language (`urdu`, `english`, `punjabi`), form (`ghazal`, `nazm`, `poem`, `khat`, `khaaka`) and the date it was `added` (new writing gets a boost for 30 days).
 2. Add one or more pieces to `"pieces"`:
    ```json
-   { "work": "New Poem", "tier": "A", "mood": "longing", "theme": "night", "hook": "a short line in your voice",
+   { "work": "New Poem", "tier": "S", "mood": "longing", "theme": "night", "hook": "a short line in your voice",
      "lines": ["first line", "second line"] }
    ```
+   - `tier`: `S`, `A` or `B`.
    - `mood`: `longing`, `heartbreak`, `love`, `city`, `life`, `wit` or `hope`.
    - `theme`: `night` for a dark reel; leave it out for paper.
    - 2–4 lines work best.
@@ -39,7 +40,7 @@ Letters and sketches are labelled as such on the reel and in the caption, and ge
 
 ## Picking order
 
-`next` prefers `A` pieces, spreads posts across all writings (none twice within about 10 days), avoids three reels in a row with the same look, and spaces out English and Punjabi pieces.
+`next` prefers `S`, then `A`, then `B` pieces, puts writing added in the last 30 days first, spreads posts across all writings (none twice within about 10 days), avoids three reels in a row with the same look, and spaces out English and Punjabi pieces.
 
 ## Requirements
 
