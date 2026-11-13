@@ -157,7 +157,11 @@ async function render(browser, p, handle, outFile) {
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   await page.setContent(html(p, handle), { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
-  const overflow = await page.evaluate(() => { const r = document.querySelector('.wrap').getBoundingClientRect(); return r.top < 80 || r.bottom > 1450; });
+  // Text must stay clear of Instagram's own overlays (profile row and caption at the bottom).
+  const overflow = await page.evaluate(() => {
+    const kids = [...document.querySelectorAll('.wrap > *')].map(e => e.getBoundingClientRect());
+    return Math.min(...kids.map(r => r.top)) < 150 || Math.max(...kids.map(r => r.bottom)) > 1420;
+  });
   if (overflow) console.warn(`  warning: ${p.id} has a lot of text; check that it fits`);
   const { starts, duration } = timeline(p.lines.length);
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
