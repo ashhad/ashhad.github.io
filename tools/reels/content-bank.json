@@ -410,6 +410,8 @@
     { "work": "Malar (Premam)", "tier": "A", "mood": "love", "hook": "whose heartbeat was it?", "id": "malar-premam-3",
       "lines": ["Jab apni hatheliyon ke beech", "Uska chehra samete khade hote ho", "Us waqt jo be-saakhta dhadkan hoti hai", "Wo kiski hoti hai?"] },
     { "work": "Patronus", "tier": "A", "mood": "longing", "theme": "night", "hook": "when the what-ifs pour in", "id": "patronus-4",
-      "lines": ["Clouds of what ifs and if onlys start flowing around", "there is a cloud burst and I get swept away by my thoughts"] }
+      "lines": ["Clouds of what ifs and if onlys start flowing around", "there is a cloud burst and I get swept away by my thoughts"] },
+    { "work": "Patronus", "tier": "A", "mood": "longing", "hook": "the one worry that drowns out the rest", "id": "patronus-5",
+      "lines": ["I have forgotten about all the other worries of the world", "Your longing has robbed other pains of their feeling"] }
   ]
 }
