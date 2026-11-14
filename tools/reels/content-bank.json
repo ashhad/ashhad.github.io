@@ -406,6 +406,8 @@
     { "work": "Maangte hain", "tier": "A", "mood": "love", "hook": "gave everything at first sight", "id": "maangte-hain-3",
       "lines": ["Wujood, ana, hasti sab bhula di thi pehli nazar mein", "Dekhte hain ab sayyad maqtool se kya maangte hain"] },
     { "work": "Maangte hain", "tier": "B", "mood": "wit", "hook": "they want love, and then more", "id": "maangte-hain-4",
-      "lines": ["Muhabbat ke aage wo mehboob maangte hain", "Maangne waale bhi kya khoob maangte hain"] }
+      "lines": ["Muhabbat ke aage wo mehboob maangte hain", "Maangne waale bhi kya khoob maangte hain"] },
+    { "work": "Malar (Premam)", "tier": "A", "mood": "love", "hook": "whose heartbeat was it?", "id": "malar-premam-3",
+      "lines": ["Jab apni hatheliyon ke beech", "Uska chehra samete khade hote ho", "Us waqt jo be-saakhta dhadkan hoti hai", "Wo kiski hoti hai?"] }
   ]
 }
