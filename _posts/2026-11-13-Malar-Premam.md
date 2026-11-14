@@ -9,7 +9,7 @@ tags: Urdu
 Kabhi sochna  
 Jab apni hatheliyo ke beech  
 Uska chehra samete khade hote ho  
-Us waqt jo besaabka dhadkan hoti hai  
+Us waqt jo be-saakhta dhadkan hoti hai  
 Wo kiski hoti hai?  
 
 Door kahin se jab nazrein milti hain  
