@@ -392,7 +392,7 @@
     { "work": "Malar (Premam)", "tier": "S", "mood": "love", "theme": "night", "hook": "late-night calls in the rain", "id": "malar-premam-1", "scheduled": "2026-11-16",
       "lines": ["Kisi barasti raat apni khidki par khade", "Jab uski phone call chal rahi ho", "Tab sochna ki kaun baat kar raha tha,", "Aur kiski khamoshi suni jaa rahi thi"] },
     { "work": "Malar (Premam)", "tier": "A", "mood": "love", "hook": "who looked away first?", "id": "malar-premam-2",
-      "lines": ["Door kahin se jab nazrein milti hain", "Aur phir sharma-sharmi mein jhukti hain", "Wo kis ki nazar thi jo sharma gayi"] },
+      "lines": ["Door kahin se jab nazrein milti hain", "Aur phir sharma-sharmi mein jhukti hain", "Wo kis ki nazar thi jo sharma gayi", "Wo kis ki nazar thi jo sharmsaar kar gayi"] },
     { "work": "Roobaru", "tier": "S", "mood": "love", "hook": "is it your face, or my love?", "id": "roobaru-1", "scheduled": "2026-11-18",
       "lines": ["Use dekh dekh kar ye sochun", "Mujhe is khoobsurat chehre se pyaar hai", "Ya ye chehra mere ishq se dilkash hai"] },
     { "work": "Roobaru", "tier": "A", "mood": "love", "hook": "an arm's length away", "id": "roobaru-2",

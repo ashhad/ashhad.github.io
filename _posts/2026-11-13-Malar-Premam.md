@@ -15,7 +15,7 @@ Wo kiski hoti hai?
 Door kahin se jab nazrein milti hain  
 Aur phir sharma-sharmi mein jhukti hain  
 Wo kis ki nazar thi jo sharma gayi  
-Wo kis ki nazar thi sharmsaar kar gayi  
+Wo kis ki nazar thi jo sharmsaar kar gayi  
 
 Kisi barasti raat apni khidki par khade  
 Jab uski phone call chal rahi ho  
