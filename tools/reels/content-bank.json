@@ -400,7 +400,7 @@
     { "work": "Roobaru", "tier": "B", "mood": "love", "hook": "the moment", "id": "roobaru-3",
       "lines": ["Main chhone ke liye haath badhaun", "Wo palkein jhuka kar muskura de"] },
     { "work": "Maangte hain", "tier": "S", "mood": "life", "hook": "praying to the one who wrote it", "id": "maangte-hain-1", "scheduled": "2026-11-20",
-      "lines": ["Jis khuda ne duniya ki aazmaishen taqdeer mein likh di", "Bechare usi khuda se taqdeer badalne ki dua karte hain"] },
+      "lines": ["Jis khuda ne duniya ki aazmaishen taqdeer mein likh di", "Goya usi khuda se taqdeer badalne ki dua maangte hain"] },
     { "work": "Maangte hain", "tier": "A", "mood": "heartbreak", "hook": "knowing better, still asking", "id": "maangte-hain-2",
       "lines": ["Hai yaqeen ki muhabbat mein wafa khushnaseebi hai", "Hum aseer-e-husn phir bhi us bewafa ko maangte hain"] },
     { "work": "Maangte hain", "tier": "A", "mood": "love", "hook": "gave everything at first sight", "id": "maangte-hain-3",
@@ -408,6 +408,8 @@
     { "work": "Maangte hain", "tier": "B", "mood": "wit", "hook": "they want love, and then more", "id": "maangte-hain-4",
       "lines": ["Muhabbat ke aage wo mehboob maangte hain", "Maangne waale bhi kya khoob maangte hain"] },
     { "work": "Malar (Premam)", "tier": "A", "mood": "love", "hook": "whose heartbeat was it?", "id": "malar-premam-3",
-      "lines": ["Jab apni hatheliyon ke beech", "Uska chehra samete khade hote ho", "Us waqt jo be-saakhta dhadkan hoti hai", "Wo kiski hoti hai?"] }
+      "lines": ["Jab apni hatheliyon ke beech", "Uska chehra samete khade hote ho", "Us waqt jo be-saakhta dhadkan hoti hai", "Wo kiski hoti hai?"] },
+    { "work": "Patronus", "tier": "A", "mood": "longing", "theme": "night", "hook": "when the what-ifs pour in", "id": "patronus-4",
+      "lines": ["Clouds of what ifs and if onlys start flowing around", "there is a cloud burst and I get swept away by my thoughts"] }
   ]
 }

@@ -16,4 +16,4 @@ Wujood, ana, Hasti sab bhula di thi pehli nazar mein
 Dekhte hain ab sayyad maqtuul se kya maangte hain  
 
 Jis khuda ne duniya ki aazmaishen taqdeer mein likh di  
-Bechare Usi khuda se taqdeer badalne ki dua karte hain  
+Goya Usi khuda se taqdeer badalne ki dua maangte hain  
