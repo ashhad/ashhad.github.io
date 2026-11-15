@@ -218,9 +218,9 @@ async function render(browser, p, bank, outFile) {
   await page.close();
 }
 
-// Animated styles: "morph" (morph.js, monochrome ink particles that bloom and transform) and
-// "shadow" (shadow.js, silhouette scenes with ink wipes). Each module builds a page exposing
-// window.setFrame(t). Also saves the final frame as <file>-cover.jpg for Instagram's "Edit cover".
+// Animated styles: "chalk" (chalk.js, chalk drawings that sketch themselves, scene by scene).
+// A style module builds a page exposing window.setFrame(t). Also saves the final frame as
+// <file>-cover.jpg for Instagram's "Edit cover".
 async function renderAnimated(style, browser, p, bank, outFile) {
   const shadow = require(`./${style}`);
   const kind = KIND[bank.works[p.work].category];
@@ -299,7 +299,7 @@ async function main() {
     const { chromium } = require('playwright');
     const browser = await chromium.launch();
     const style = arg('style', 'classic');
-    if (!['classic', 'morph', 'shadow'].includes(style)) throw new Error(`Unknown style ${style}; use classic, morph or shadow`);
+    if (!['classic', 'chalk'].includes(style)) throw new Error(`Unknown style ${style}; use classic or chalk`);
     for (const p of pieces) {
       const file = style === 'classic' ? fileName(p) : fileName(p).replace(/\.mp4$/, `-${style}.mp4`);
       if (style === 'classic') await render(browser, p, bank, path.join(OUT, file));
