@@ -159,8 +159,8 @@ html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;background:${t.bg}
 .bg{position:absolute;inset:-4%;background:radial-gradient(ellipse at 50% 45%, transparent 40%, ${t.vignette} 100%), ${t.bg}}
 .grain{position:absolute;inset:0;opacity:${t.grain};mix-blend-mode:multiply}
 .wrap{position:absolute;left:110px;right:110px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;transform:translateY(-60px)}
-.hook{font:600 34px/1.3 UiSans;letter-spacing:.14em;text-transform:uppercase;color:${t.muted};margin-bottom:90px}
-.rule{width:120px;height:2px;background:${t.accent};margin:0 auto 90px}
+.hook{font:600 46px/1.25 UiSans;letter-spacing:.1em;text-transform:uppercase;color:${t.ink};margin-bottom:64px}
+.rule{width:140px;height:3px;background:${t.accent};margin:0 auto 70px}
 .line{font:italic 500 ${size}px/1.3 PoemSerif;color:${t.ink};margin:0 0 ${n > 2 ? 30 : 44}px}
 .line.gap{margin-top:36px}
 .sig{position:absolute;left:0;right:0;bottom:430px;text-align:center;font:400 30px/1 UiSans;letter-spacing:.06em;color:${t.muted}}
@@ -218,6 +218,30 @@ async function render(browser, p, bank, outFile) {
   await page.close();
 }
 
+// "Shadow play" style (shadow.js): multi-scene silhouette animation with ink wipes.
+// Also saves the final frame as <file>-cover.jpg for Instagram's "Edit cover".
+async function renderShadow(browser, p, bank, outFile) {
+  const shadow = require('./shadow');
+  const kind = KIND[bank.works[p.work].category];
+  const page = await browser.newPage({ viewport: { width: W, height: H } });
+  await page.setContent(shadow.page(p, bank, kind), { waitUntil: 'load' });
+  await page.evaluate(() => document.fonts.ready);
+  const { duration } = shadow.plan(p);
+  const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
+    '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', outFile]);
+  const done = new Promise((res, rej) => ff.on('close', c => (c === 0 ? res() : rej(new Error(`ffmpeg exited with ${c}`)))));
+  const frames = Math.round(duration * FPS);
+  for (let f = 0; f < frames; f++) {
+    await page.evaluate(t => window.setFrame(t), f / FPS);
+    ff.stdin.write(await page.screenshot({ type: 'jpeg', quality: 92 }));
+  }
+  ff.stdin.end();
+  await done;
+  await page.evaluate(t => window.setFrame(t), duration - 0.05);
+  await page.screenshot({ type: 'jpeg', quality: 92, path: outFile.replace(/\.mp4$/, '-cover.jpg') });
+  await page.close();
+}
+
 // ---------- commands ----------
 
 const arg = (name, fallback) => { const i = process.argv.indexOf(`--${name}`); return i > -1 ? process.argv[i + 1] : fallback; };
@@ -264,7 +288,8 @@ async function main() {
   }
 
   if (cmd === 'render') {
-    const pieces = rest.filter(a => !a.startsWith('--')).map(id => {
+    const ids = rest.filter((a, i) => !a.startsWith('--') && !(rest[i - 1] || '').startsWith('--'));
+    const pieces = ids.map(id => {
       const p = bank.pieces.find(q => q.id === id);
       if (!p) throw new Error(`No piece with id ${id}`);
       return p;
@@ -272,9 +297,11 @@ async function main() {
     fs.mkdirSync(OUT, { recursive: true });
     const { chromium } = require('playwright');
     const browser = await chromium.launch();
+    const shadow = arg('style') === 'shadow';
     for (const p of pieces) {
-      await render(browser, p, bank, path.join(OUT, fileName(p)));
-      console.log(`out/${fileName(p)}\n${caption(bank, p)}\n`);
+      const file = shadow ? fileName(p).replace(/\.mp4$/, '-shadow.mp4') : fileName(p);
+      await (shadow ? renderShadow : render)(browser, p, bank, path.join(OUT, file));
+      console.log(`out/${file}\n${caption(bank, p)}\n`);
     }
     return browser.close();
   }
