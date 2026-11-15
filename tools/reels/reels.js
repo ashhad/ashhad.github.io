@@ -218,10 +218,11 @@ async function render(browser, p, bank, outFile) {
   await page.close();
 }
 
-// "Shadow play" style (shadow.js): multi-scene silhouette animation with ink wipes.
-// Also saves the final frame as <file>-cover.jpg for Instagram's "Edit cover".
-async function renderShadow(browser, p, bank, outFile) {
-  const shadow = require('./shadow');
+// Animated styles: "morph" (morph.js, monochrome ink particles that bloom and transform) and
+// "shadow" (shadow.js, silhouette scenes with ink wipes). Each module builds a page exposing
+// window.setFrame(t). Also saves the final frame as <file>-cover.jpg for Instagram's "Edit cover".
+async function renderAnimated(style, browser, p, bank, outFile) {
+  const shadow = require(`./${style}`);
   const kind = KIND[bank.works[p.work].category];
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   await page.setContent(shadow.page(p, bank, kind), { waitUntil: 'load' });
@@ -297,10 +298,12 @@ async function main() {
     fs.mkdirSync(OUT, { recursive: true });
     const { chromium } = require('playwright');
     const browser = await chromium.launch();
-    const shadow = arg('style') === 'shadow';
+    const style = arg('style', 'classic');
+    if (!['classic', 'morph', 'shadow'].includes(style)) throw new Error(`Unknown style ${style}; use classic, morph or shadow`);
     for (const p of pieces) {
-      const file = shadow ? fileName(p).replace(/\.mp4$/, '-shadow.mp4') : fileName(p);
-      await (shadow ? renderShadow : render)(browser, p, bank, path.join(OUT, file));
+      const file = style === 'classic' ? fileName(p) : fileName(p).replace(/\.mp4$/, `-${style}.mp4`);
+      if (style === 'classic') await render(browser, p, bank, path.join(OUT, file));
+      else await renderAnimated(style, browser, p, bank, path.join(OUT, file));
       console.log(`out/${file}\n${caption(bank, p)}\n`);
     }
     return browser.close();
