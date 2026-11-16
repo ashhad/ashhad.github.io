@@ -96,6 +96,7 @@
 
   const MOTIFS = {
     flowers: r => ({ items: flowers(r, 4, 150, 130, 300) }),
+    posy: r => ({ items: flowers(r, 2, 34, 90, 190) }),
     meadow: r => ({ items: flowers(r, 9, 440, 120, 330) }),
     pines: r => ({ items: [...pine(r, -150, 250), ...pine(r, -50, 380), ...pine(r, 60, 300), ...pine(r, 160, 420), ...grass(r, -220)] }),
     pinesSmall: r => ({ items: [...pine(r, -70, 250), ...pine(r, 30, 340), ...pine(r, 110, 210)] }),
@@ -230,6 +231,7 @@
   };
 
   const SCALE = { river: 1.15, heart: 1.45, lovebirds: 1.25, house: 1.3, window: 1.35, balcony: 1.2, phone: 1.9, cups: 1.8, city: 1.4, pines: 1.4, tree: 1.7, baretree: 1.7, lampbench: 1.45, campfire: 2, boat: 1.2 };
+  const WIDTH = { phone: 200, window: 430, balcony: 320, heart: 620, river: 940, boat: 860, city: 480, cups: 280, house: 350, campfire: 140, pines: 400, tree: 340, baretree: 340, lampbench: 410, lovebirds: 600 };
   const ACCENT = { flowers: 1.3, pinesSmall: 1.2, lamp: 1.2, campfire: 1.5, tree: 1.25 };
 
   // ---------- turning paths into chalk dabs ----------
@@ -271,8 +273,8 @@
     return st;
   }
   // Each drawing sketches its paths one after another; different drawings in a scene sketch at once.
-  function addMotif(k, name, tf, delay) {
-    const R = rng(hashStr(name + k) ^ seed), m = MOTIFS[name](R);
+  function addMotif(k, name, tf, delay, seedK = k) {
+    const R = rng(hashStr(name + seedK) ^ seed), m = MOTIFS[name](R);
     if (m.rot) tf = { ...tf, rot: (tf.rot || 0) + m.rot };
     const lens = m.items.map(it => { probe.setAttribute('d', it.d); return Math.max(20, probe.getTotalLength() * (it.fill ? .5 : 1)); });
     const total = lens.reduce((a, b) => a + b, 0);
@@ -288,7 +290,13 @@
   scenes.forEach((s, k) => {
     const cx = k * W + W / 2, on = (x, sc = 1, flip = false) => ({ x: cx + x, y: GROUND, sc, flip });
     addMotif(k, 'ground', on(0), 0);
-    if (s.recap) { addMotif(k, 'meadow', on(0, 1.3), .05); addMotif(k, 'hills', on(0, 1.2), .1); }
+    if (s.recap) {
+      // The closing scene gathers this reel's own drawings in miniature, so every ending differs.
+      const mains = scenes.filter(x => !x.recap), slot = (W - 70) / mains.length;
+      mains.forEach((m, j) => addMotif(k, m.main, on(-W / 2 + 35 + slot * (j + .5), Math.min((SCALE[m.main] || 1.3) * .68, slot / (WIDTH[m.main] || 400)), m.side < 0), .05 + j * .12, j));
+      for (let j = 1; j < mains.length; j++) addMotif(k, 'posy', on(-W / 2 + 35 + slot * j, .85), .3, j);
+      addMotif(k, 'hills', on(0, 1.2), .1);
+    }
     else {
       const full = ['boat', 'river', 'heart'].includes(s.main), wide = ['city', 'pines', 'lampbench', 'lovebirds'].includes(s.main);
       addMotif(k, s.main, on(full ? 0 : wide ? s.side * 150 : s.side * 215, SCALE[s.main] || 1.3, s.side < 0), .05);

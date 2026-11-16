@@ -5,6 +5,7 @@
 //                                                      write out/captions-<start>.md, mark them scheduled
 //   node reels.js next --count 14 --dry                show what would be picked, change nothing
 //   node reels.js render <id> [<id> ...]               (re)render specific pieces
+//   Add --style chalk to next, render or captions for the chalk-drawing style (default: classic).
 //   node reels.js captions --start 2026-11-16 --count 14   rewrite the captions file for scheduled pieces
 //   node reels.js ids                                  give new pieces an id and tidy the bank file
 //
@@ -129,12 +130,16 @@ function caption(bank, p) {
 function captionsFile(bank, pieces) {
   const first = pieces[0].scheduled, last = pieces[pieces.length - 1].scheduled;
   return [`# Reels ${first} to ${last}`, '',
-    'For each day: upload the video as a Reel, add a song from Instagram\'s music library, paste the caption, schedule it.', '',
-    ...pieces.flatMap(p => [`## ${p.scheduled} · ${p.work}`, '', `File: \`${fileName(p)}\``, '', '```', caption(bank, p), '```', '']),
+    'For each day: upload the video as a Reel, add a song from Instagram\'s music library, paste the caption, schedule it.',
+    ...(styleOf() === 'classic' ? [] : ['Set the cover with Edit cover → Add from camera roll, using the matching cover image.']), '',
+    ...pieces.flatMap(p => [`## ${p.scheduled} · ${p.work}`, '', `File: \`${fileName(p)}\``, ...(styleOf() === 'classic' ? [] : [`Cover: \`${fileName(p).replace(/\.mp4$/, '-cover.jpg')}\``]), '', '```', caption(bank, p), '```', '']),
   ].join('\n');
 }
 
-const fileName = p => (p.scheduled ? `${p.scheduled}-${p.id}.mp4` : `${p.id}.mp4`);
+const STYLES = ['classic', 'chalk'];
+const styleOf = () => { const s = arg('style', 'classic'); if (!STYLES.includes(s)) throw new Error(`Unknown style ${s}; use ${STYLES.join(' or ')}`); return s; };
+const fileName = p => `${p.scheduled ? `${p.scheduled}-` : ''}${p.id}${styleOf() === 'classic' ? '' : `-${styleOf()}`}.mp4`;
+const renderAny = (browser, p, bank, outFile) => (styleOf() === 'classic' ? render(browser, p, bank, outFile) : renderAnimated(styleOf(), browser, p, bank, outFile));
 
 // ---------- rendering ----------
 
@@ -269,7 +274,7 @@ async function main() {
     const browser = await chromium.launch();
     for (const p of picks) {
       process.stdout.write(`rendering ${fileName(p)} ... `);
-      await render(browser, p, bank, path.join(OUT, fileName(p)));
+      await renderAny(browser, p, bank, path.join(OUT, fileName(p)));
       console.log('done');
     }
     await browser.close();
@@ -298,12 +303,9 @@ async function main() {
     fs.mkdirSync(OUT, { recursive: true });
     const { chromium } = require('playwright');
     const browser = await chromium.launch();
-    const style = arg('style', 'classic');
-    if (!['classic', 'chalk'].includes(style)) throw new Error(`Unknown style ${style}; use classic or chalk`);
     for (const p of pieces) {
-      const file = style === 'classic' ? fileName(p) : fileName(p).replace(/\.mp4$/, `-${style}.mp4`);
-      if (style === 'classic') await render(browser, p, bank, path.join(OUT, file));
-      else await renderAnimated(style, browser, p, bank, path.join(OUT, file));
+      const file = fileName(p);
+      await renderAny(browser, p, bank, path.join(OUT, file));
       console.log(`out/${file}\n${caption(bank, p)}\n`);
     }
     return browser.close();
