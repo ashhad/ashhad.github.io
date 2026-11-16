@@ -389,7 +389,7 @@
       "lines": ["Har roz ek naya gham dhoondhta hai dil", "Tere gham-e-furqat se ab din nahi chadhta"] },
     { "work": "Marasim", "tier": "B", "mood": "wit", "hook": "done with love's drama", "id": "marasim-5",
       "lines": ["Main ab ishq ke maslon mein nahi padta", "Kisi ki tawajjo ke liye bejah nahi jhagadta"] },
-    { "work": "Malar (Premam)", "tier": "S", "mood": "love", "theme": "night", "hook": "late-night calls in the rain", "id": "malar-premam-1", "scheduled": "2026-11-16",
+    { "work": "Malar (Premam)", "tier": "S", "mood": "love", "theme": "night", "hook": "late-night calls in the rain", "id": "malar-premam-1",
       "lines": ["Kisi barasti raat apni khidki par khade", "Jab uski phone call chal rahi ho", "Tab sochna ki kaun baat kar raha tha,", "Aur kiski khamoshi suni jaa rahi thi"] },
     { "work": "Malar (Premam)", "tier": "A", "mood": "love", "hook": "who looked away first?", "id": "malar-premam-2",
       "lines": ["Door kahin se jab nazrein milti hain", "Aur phir sharma-sharmi mein jhukti hain", "Wo kis ki nazar thi jo sharma gayi", "Wo kis ki nazar thi jo sharmsaar kar gayi"] },
@@ -407,8 +407,8 @@
       "lines": ["Wujood, ana, hasti sab bhula di thi pehli nazar mein", "Dekhte hain ab sayyad maqtool se kya maangte hain"] },
     { "work": "Maangte hain", "tier": "B", "mood": "wit", "hook": "they want love, and then more", "id": "maangte-hain-4",
       "lines": ["Muhabbat ke aage wo mehboob maangte hain", "Maangne waale bhi kya khoob maangte hain"] },
-    { "work": "Malar (Premam)", "tier": "A", "mood": "love", "hook": "whose heartbeat was it?", "id": "malar-premam-3",
-      "lines": ["Jab apni hatheliyon ke beech", "Uska chehra samete khade hote ho", "Us waqt jo be-saakhta dhadkan hoti hai", "Wo kiski hoti hai?"] },
+    { "work": "Malar (Premam)", "tier": "S", "mood": "love", "hook": "whose heartbeat was it?", "id": "malar-premam-3", "theme": "night", "scheduled": "2026-11-16",
+      "lines": ["Kabhi sochna", "Jab apni hatheliyon ke beech", "Uska chehra samete khade hote ho", "Us waqt jo be-saakhta dhadkan hoti hai", "Wo kiski hoti hai?"] },
     { "work": "Patronus", "tier": "A", "mood": "longing", "theme": "night", "hook": "when the what-ifs pour in", "id": "patronus-4",
       "lines": ["Clouds of what ifs and if onlys start flowing around", "there is a cloud burst and I get swept away by my thoughts"] }
   ]

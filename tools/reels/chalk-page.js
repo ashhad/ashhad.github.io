@@ -157,6 +157,47 @@
       items.push(...outlined('M-90,-162 L96,-162 L66,-118 L-62,-118 Z', .3), L('M0,-162 V-330', { w: 4 }), ...outlined('M8,-322 L84,-184 L8,-184 Z', .3, { w: 4 }), L('M-8,-312 L-64,-184 L-8,-184 Z', { w: 3.5 }), L('M0,-330 l26,8 l-26,8', { w: 3 }));
       return { items };
     },
+    river: r => ({
+      items: [
+        L('M-470,-30 L-250,-330 L-150,-205 L-20,-440 L104,-236'), L('M128,-240 L230,-350 L470,-30'),
+        L('M-296,-268 l22,-14 l16,18 l20,-22 l18,20 l14,-10', { w: 3 }), L('M-66,-372 l20,-16 l18,20 l22,-26 l20,24 l18,-14', { w: 3 }), L('M188,-304 l18,-12 l16,16 l18,-20 l16,18', { w: 3 }),
+        L('M104,-236 C60,-176 150,-140 70,-92 C10,-56 -110,-40 -200,0', { w: 4.5 }), L('M128,-240 C110,-190 214,-150 160,-96 C128,-62 110,-30 120,0', { w: 4.5 }),
+        L('M40,-70 c6,-18 30,-18 36,0', { w: 3.5 }), L('M-70,-26 c8,-20 36,-20 44,0', { w: 3.5 }), L('M114,-150 c4,-12 20,-12 24,0', { w: 3 }),
+        ...pine(r, -350, 150), ...pine(r, -420, 100), ...pine(r, 330, 140), ...pine(r, 400, 95), ...grass(r, -260), ...grass(r, 200),
+      ],
+      extras: [{ type: 'flow', path: 'M116,-238 C86,-182 182,-146 116,-94 C70,-58 0,-34 -40,0' }],
+    }),
+    heart: r => ({
+      items: [
+        L('M0,-282 C-36,-350 -150,-336 -150,-244 C-150,-166 -62,-118 0,-58 C62,-118 150,-166 150,-244 C150,-336 36,-350 0,-282 Z', { fill: .1, beat: [0, -220] }),
+        L('M0,-282 C-36,-350 -150,-336 -150,-244 C-150,-166 -62,-118 0,-58 C62,-118 150,-166 150,-244 C150,-336 36,-350 0,-282 Z', { w: 5.5, beat: [0, -220] }),
+        L('M-440,-214 H-170 l18,-22 l18,22 h22 l24,-104 l34,196 l26,-116 l16,24 h40 l18,-22 l18,22 H440', { w: 4 }),
+        L('M0,-58 C12,-36 -10,-18 0,0', { w: 2.5, a: .8 }),
+        ...flower(r, -300, 150, -20, 'daisy'), ...flower(r, -240, 100, 10, 'sprig'), ...flower(r, 290, 170, 20, 'tulip'), ...grass(r, 220), ...grass(r, -180),
+      ],
+    }),
+    lovebirds: r => {
+      const bird = (x, y, dir, s) => {
+        const p = (a, b) => `${f(x + dir * a * s)},${f(y + b * s)}`;
+        return [
+          L(`M${p(0, 0)} C${p(4, -28)} ${p(44, -30)} ${p(50, 2)} C${p(42, 20)} ${p(16, 22)} ${p(0, 0)} Z`, { w: 4 }), L(`M${p(0, -2)} L${p(-13, -5)} L${p(0, -10)}`, { w: 3 }),
+          L(circle(x + dir * 13 * s, y - 8 * s, 2.5), { w: 3 }), L(`M${p(20, -2)} C${p(28, -12)} ${p(40, -8)} ${p(44, 4)}`, { w: 3 }),
+          L(`M${p(48, 0)} L${p(68, 6)} M${p(47, 6)} L${p(64, 14)}`, { w: 3 }), L(`M${p(20, 17)} L${p(20, 30)} M${p(30, 17)} L${p(30, 30)}`, { w: 2.5 }),
+        ];
+      };
+      const leafAt = (x, y, a) => { const s = 30, ex = x + Math.cos(a) * s, ey = y + Math.sin(a) * s; return L(`M${f(x)},${f(y)} Q${f(ex - Math.sin(a) * 11)},${f(ey + Math.cos(a) * 11)} ${f(ex)},${f(ey)} Q${f(ex + Math.sin(a) * 11)},${f(ey - Math.cos(a) * 11)} ${f(x)},${f(y)}`, { w: 2.5 }); };
+      return {
+        items: [
+          L('M250,0 C238,-150 262,-290 246,-450'), L('M296,0 C288,-150 304,-300 290,-450'), L('M266,-80 q6,-20 2,-44 M276,-200 q-6,-22 0,-46 M270,-340 q6,-18 2,-40', { w: 2.5, a: .7 }),
+          L('M250,-262 C130,-300 -60,-262 -262,-296'), L('M250,-240 C140,-270 -40,-244 -180,-266', { w: 3.5 }),
+          L('M-170,-286 q-30,-40 -72,-50 M70,-280 q22,-50 64,-64 M-262,-296 q-24,-6 -40,-22', { w: 3 }),
+          leafAt(-242, -336, -2.6), leafAt(-206, -322, -1.2), leafAt(134, -344, -.5), leafAt(100, -316, -1.9), leafAt(-302, -318, 2.9), leafAt(180, -268, 1.2), leafAt(-110, -272, 1.4),
+          ...bird(-80, -330, -1, 1.7), ...bird(-12, -318, 1, 1.7),
+          L('M-46,-432 c-10,-18 -36,-14 -36,8 c0,20 20,30 36,44 c16,-14 36,-24 36,-44 c0,-22 -26,-26 -36,-8 Z', { w: 3, beat: [-46, -408] }),
+          ...grass(r, 180), ...grass(r, 330),
+        ],
+      };
+    },
     phone: r => {
       const items = [L('M-62,-250 h124 a16,16 0 0 1 16,16 v218 a16,16 0 0 1 -16,16 h-124 a16,16 0 0 1 -16,-16 v-218 a16,16 0 0 1 16,-16 Z'), L('M-18,-232 h36', { w: 3.5 }), L(circle(0, -22, 7), { w: 3 })];
       items.push(L('M-56,-196 h92 a10,10 0 0 1 10,10 v36 a10,10 0 0 1 -10,10 h-78 l-14,12 Z', { w: 3 }), L('M-44,-178 l14,10 l-14,10 Z', { fill: .9 }));
@@ -188,7 +229,7 @@
     ground: () => ({ items: [L('M-560,0 C-300,-5 -120,4 0,-2 S380,4 560,0', { w: 5.5 })] }),
   };
 
-  const SCALE = { house: 1.3, window: 1.35, balcony: 1.2, phone: 1.9, cups: 1.8, city: 1.4, pines: 1.4, tree: 1.7, baretree: 1.7, lampbench: 1.45, campfire: 2, boat: 1.2 };
+  const SCALE = { river: 1.15, heart: 1.45, lovebirds: 1.25, house: 1.3, window: 1.35, balcony: 1.2, phone: 1.9, cups: 1.8, city: 1.4, pines: 1.4, tree: 1.7, baretree: 1.7, lampbench: 1.45, campfire: 2, boat: 1.2 };
   const ACCENT = { flowers: 1.3, pinesSmall: 1.2, lamp: 1.2, campfire: 1.5, tree: 1.25 };
 
   // ---------- turning paths into chalk dabs ----------
@@ -200,7 +241,7 @@
   function build(it, tf, k, s0, span, R) {
     probe.setAttribute('d', it.d);
     const len = probe.getTotalLength(), w = Math.min(it.w * tf.sc, 8.5), dx = it.dx || 0, dy = it.dy || 0;
-    const st = { k, s0, span, variants: [], per: 1, n: 0, minx: 1e9, maxx: -1e9 };
+    const st = { k, s0, span, variants: [], per: 1, n: 0, minx: 1e9, maxx: -1e9, beat: it.beat ? apply(tf, it.beat[0], it.beat[1]) : null };
     if (it.fill) {
       let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
       for (let s = 0; s <= len; s += 4) { const p = probe.getPointAtLength(s); x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y); }
@@ -237,7 +278,11 @@
     const total = lens.reduce((a, b) => a + b, 0);
     let cum = 0;
     m.items.forEach((it, i) => { strokes.push(build(it, tf, k, delay + .7 * cum / total, Math.max(.16, .7 * lens[i] / total + .1), R)); cum += lens[i]; });
-    (m.extras || []).forEach(e => extras.push({ ...e, k, tf, ph: R() * 10 }));
+    (m.extras || []).forEach(e => {
+      const x = { ...e, k, tf, ph: R() * 10 };
+      if (e.path) { probe.setAttribute('d', e.path); const len = probe.getTotalLength(); x.pts = []; for (let s = 0; s <= len; s += 5) { const p = probe.getPointAtLength(s); x.pts.push(apply(tf, p.x, p.y)); } }
+      extras.push(x);
+    });
   }
 
   scenes.forEach((s, k) => {
@@ -245,7 +290,7 @@
     addMotif(k, 'ground', on(0), 0);
     if (s.recap) { addMotif(k, 'meadow', on(0, 1.3), .05); addMotif(k, 'hills', on(0, 1.2), .1); }
     else {
-      const full = s.main === 'boat', wide = ['city', 'pines', 'lampbench'].includes(s.main);
+      const full = ['boat', 'river', 'heart'].includes(s.main), wide = ['city', 'pines', 'lampbench', 'lovebirds'].includes(s.main);
       addMotif(k, s.main, on(full ? 0 : wide ? s.side * 150 : s.side * 215, SCALE[s.main] || 1.3, s.side < 0), .05);
       if (s.accent && !full) addMotif(k, s.accent, on(wide ? -s.side * 395 : -s.side * 310, (ACCENT[s.accent] || 1.2) * (wide ? .85 : 1), s.side > 0), .25);
       if (!full && k % 2 === 0) addMotif(k, 'hills', on(0, 1.2), .1);
@@ -282,6 +327,8 @@
 
   window.setFrame = t => {
     const cam = camera(t), boil = Math.floor(t * 7) % 3;
+    // A double heartbeat, about 66 beats a minute.
+    const ph = t * 1.1 % 1, pulse = 1 + .06 * Math.exp(-Math.pow((ph - .1) / .06, 2)) + .04 * Math.exp(-Math.pow((ph - .32) / .06, 2));
     ctx.clearRect(0, 0, W, H);
     ctx.fillStyle = INK;
     for (const s of stars) { const x = s.x - cam * .6; if (x < -10 || x > W + 10) continue; ctx.globalAlpha = .2 + .6 * Math.abs(Math.sin(t * s.w + s.p)); ctx.fillRect(x, s.y, s.s, s.s); if (s.s > 4) { ctx.fillRect(x - s.s, s.y + s.s * .3, s.s * 3, s.s * .4); ctx.fillRect(x + s.s * .3, s.y - s.s, s.s * .4, s.s * 3); } }
@@ -291,6 +338,7 @@
       const p = clamp(((t - T(st.k)) / DRAW - st.s0) / st.span);
       if (p <= 0) continue;
       const arr = st.variants[boil % st.variants.length], count = Math.floor(p * st.n) * st.per * 4;
+      if (st.beat) { const [bx, by] = st.beat; for (let i = 0; i < count; i += 4) { const a = arr[i + 3]; if (!a) continue; ctx.globalAlpha = a; ctx.fillRect(bx + (arr[i] - bx) * pulse - cam, by + (arr[i + 1] - by) * pulse, arr[i + 2], arr[i + 2]); } continue; }
       for (let i = 0; i < count; i += 4) { const a = arr[i + 3]; if (!a) continue; ctx.globalAlpha = a; ctx.fillRect(arr[i] - cam, arr[i + 1], arr[i + 2], arr[i + 2]); }
     }
 
@@ -304,6 +352,9 @@
         for (let i = 0; i < 26; i++) { const fr = (i * .618 + e.ph) % 1, y = top + ((fr * 997 % 1) * hgt + t * (300 + (i % 5) * 40)) % hgt, dx = x + fr * e.w * e.tf.sc; chalk([[dx, y], [dx - 7, y + 30]], 3, vis * .75 * (1 - (y - top) / hgt * .5), R); }
       } else if (e.type === 'birds') {
         for (let i = 0; i < 6; i++) { const bx = x - 160 + i * 74 + ((i * 53) % 40) + t * 26, by = oy - 60 + ((i * 97) % 150) + Math.sin(t * 1.4 + i) * 10, s = 20 + (i * 7) % 12, fl = Math.sin(t * 8 + i * 1.7) * s * .5; chalk([[bx - s, by - fl], [bx - s * .45, by - s * .25 - fl * .3], [bx, by], [bx + s * .45, by - s * .25 - fl * .3], [bx + s, by - fl]], 4, vis, R); }
+      } else if (e.type === 'flow') {
+        const n = e.pts.length;
+        for (let i = 0; i < 16; i++) { const fr = (i / 16 + t * .32) % 1, j = Math.min(n - 4, Math.floor(fr * (n - 1))), lane = ((i * .618) % 1 - .5) * (16 + 250 * Math.pow(fr, 1.7)) * .75 * e.tf.sc, a = e.pts[j], b = e.pts[j + 3]; chalk([[a[0] - cam + lane, a[1]], [b[0] - cam + lane, b[1]]], 3, vis * (.45 + .5 * Math.sin(fr * 3.14)), R); }
       } else if (e.type === 'steam') {
         for (const off of [-9, 9]) { const pts = []; for (let j = 0; j <= 16; j++) pts.push([x + off * e.tf.sc + Math.sin(j * .55 + t * 2.4 + off) * 9 * (j / 16), oy - j * 6.5 * e.tf.sc]); for (let j = 1; j < pts.length; j++) chalk([pts[j - 1], pts[j]], 3, vis * .8 * (1 - j / 17), R); }
       } else if (e.type === 'sound') {

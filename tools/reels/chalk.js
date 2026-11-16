@@ -17,20 +17,23 @@ const MAIN = [
   ['phone', /voice note|message|phone|\bcall\b|suniye|\bapp\b/i],
   ['window', /khidki|window|\bsill\b/i],
   ['balcony', /balcony|jharok/i],
-  ['boat', /nadi|dariya|samundar|sahil|\bsea\b|river|lehar|jheel|paani|ufna/i],
+  ['heart', /dhadkan|dhadak|heartbeat|\bheart\b/i],
+  ['river', /nadi|river|pahad|behti|ufna/i],
+  ['boat', /dariya|samundar|sahil|\bsea\b|lehar|jheel|paani/i],
   ['city', /sheher|shahar|\bcity\b|traffic|daftar|metro|bazaar|sadk/i],
   ['cups', /chai|coffee|cafe|\bcup\b/i],
   ['house', /\bghar\b|aashiyana|\bhome\b|deewar|aangan|chhat|kamre|khandahar|\bden\b/i],
   ['campfire', /maachis|teeli|cigarette|\baag\b|jala|flame|\bburn|sulag/i],
-  ['pines', /pahad|deodar|jungle|mountain/i],
+  ['pines', /deodar|jungle|mountain/i],
   ['tree', /\bped\b|shajar|patte|\btree|leaves|bagiche|shaakh/i],
+  ['lovebirds', /chehra|hatheli|gale laga|kandhe|baaho|choom/i],
   ['lampbench', /akel|tanha|intezar|\bwait|alone|chup\b|khamosh|silence/i],
 ];
 const MAIN_BY_MOOD = { longing: 'lampbench', heartbreak: 'baretree', love: 'house', city: 'city', life: 'pines', wit: 'cups', hope: 'tree' };
 const SKY = [
   ['cloud', /baarish|baadal|\brain|barsaat|barasti|garaj|saavan|bauchhar|aansu|\btears/i],
   ['sun', /sooraj|dhoop|subah|seher|morning|\bdin\b|ujaale|\bsun\b|light/i],
-  ['envelope', /\bkhat\b|letter|likh/i],
+  ['envelope', /\bkhat\b|letter|khutoot/i],
   ['birds', /parinda|parwaz|\bbirds?\b|chale gaye|jaane do|leaving|hijr/i],
   ['moon', /chaand|chand\b|moon|mehtab|chaandni|raat|night|shab|sitaar|neend|khwab/i],
 ];
@@ -38,9 +41,12 @@ const ACCENTS = ['flowers', 'pinesSmall', 'lamp', 'campfire', 'tree'];
 
 const hash = s => [...s].reduce((h, c) => (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0, 2166136261);
 
+const rotate = (arr, n) => arr.map((_, i) => arr[(i + n) % arr.length]);
+
 function chunks(lines) {
   if (lines.length <= 2) return lines.map(l => [l]);
   if (lines.length === 3) return [[lines[0]], [lines[1], lines[2]]];
+  if (lines.length === 5) return [[lines[0]], lines.slice(1, 3), lines.slice(3)];
   return [lines.slice(0, 2), lines.slice(2, 4), ...(lines.length > 4 ? [lines.slice(4)] : [])];
 }
 
@@ -50,17 +56,19 @@ function plan(piece, isLetter) {
   const seed = hash(piece.id);
   const used = new Set();
   const first = (table, text) => (table.find(([name, re]) => re.test(text) && !used.has(name)) || [])[0];
+  // Scenes whose own words name an image claim it first; the rest borrow from the excerpt or the mood.
+  const own = groups.map(g => first(MAIN, g.join(' ')));
+  own.forEach((m, i) => { if (m && own.indexOf(m) === i) used.add(m); else own[i] = null; });
   const scenes = groups.map((g, i) => {
     const text = g.join(' ');
-    // A scene's own words first, then images from the rest of the excerpt, then the mood.
-    const main = first(MAIN, text) || first(MAIN, all)
-      || [MAIN_BY_MOOD[piece.mood], 'house', 'pines', 'tree', 'lampbench', 'city'].find(n => n && !used.has(n));
+    const main = own[i] || first(MAIN, all)
+      || [MAIN_BY_MOOD[piece.mood], ...rotate(['pines', 'tree', 'lampbench', 'house', 'campfire', 'baretree'], seed + i)].find(n => n && !used.has(n));
     used.add(main);
     let sky = first(SKY, text) || (i === 0 && isLetter ? 'envelope' : null) || first(SKY, all) || (piece.mood === 'heartbreak' && !used.has('birds') ? 'birds' : 'moon');
     if (sky !== 'moon') used.add(sky);
     // Flowers bloom in the first scene; later scenes get a different companion drawing.
-    const taken = n => n === main || used.has(n) || (n === 'pinesSmall' && main === 'pines') || (n === 'lamp' && main === 'lampbench');
-    const accent = i === 0 ? 'flowers' : ACCENTS.slice(1).find(n => !taken(n)) || 'flowers';
+    const taken = n => n === main || used.has(n) || (n === 'pinesSmall' && main === 'pines') || (n === 'lamp' && main === 'lampbench') || (n === 'tree' && /tree/.test(main));
+    const accent = i === 0 ? 'flowers' : rotate(ACCENTS.slice(1), seed >>> 3).find(n => !taken(n)) || 'flowers';
     if (accent !== 'flowers') used.add(accent);
     return { lines: g, main, sky, accent, side: (seed + i) % 2 ? 1 : -1 };
   });
